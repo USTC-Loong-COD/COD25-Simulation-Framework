@@ -14,39 +14,39 @@
 #include "enums.hpp"
 #include <cstdint>
 
+// Memory configs
+// instruction memory: [ instr_mem_start, instr_mem_start + (1 << instr_mem_depth) -1 ]
+// data memory: [ data_mem_start, data_mem_start + (1 << data_mem_depth) -1 ]
+template<IsaType __isa_type>
+class MemoryConfigs;
+// Default configs for RISC-V core
+template<>
+class MemoryConfigs<IsaType::RISC_V> {
+public:
+    inline constexpr static uint32_t instr_mem_start = 0x00400000;
+    inline constexpr static uint32_t instr_mem_depth = 16;
+    inline constexpr static const char * instr_mem_ini = "mem/instr.ini";
+    inline constexpr static uint32_t data_mem_start = 0x10010000;
+    inline constexpr static uint32_t data_mem_depth = 16;
+    inline constexpr static const char * data_mem_ini = "mem/data.ini";
+};
+// Default configs for LoongArch core
+template<>
+class MemoryConfigs<IsaType::LOONGARCH> {
+public:
+    inline constexpr static uint32_t instr_mem_start = 0x1C000000;
+    inline constexpr static uint32_t instr_mem_depth = 16;
+    inline constexpr static const char * instr_mem_ini = "mem/instr.ini";
+    inline constexpr static uint32_t data_mem_start = 0x1C800000;
+    inline constexpr static uint32_t data_mem_depth = 16;
+    inline constexpr static const char * data_mem_ini = "mem/data.ini";
+};
+
 class Configs {
 public:
     // Core type
     inline constexpr static IsaType isa_type = IsaType::RISC_V;
     inline constexpr static CoreType core_type = CoreType::COMPLETE;
-
-    // Memory configs
-    // instruction memory: [ instr_mem_start, instr_mem_start + (1 << instr_mem_depth) -1 ]
-    // data memory: [ data_mem_start, data_mem_start + (1 << data_mem_depth) -1 ]
-    template<IsaType __isa_type>
-    class MemoryConfigs;
-    // Default configs for RISC-V core
-    template<>
-    class MemoryConfigs<IsaType::RISC_V> {
-    public:
-        inline constexpr static uint32_t instr_mem_start = 0x00400000;
-        inline constexpr static uint32_t instr_mem_depth = 16;
-        inline constexpr static const char * instr_mem_ini = "mem/instr.ini";
-        inline constexpr static uint32_t data_mem_start = 0x10010000;
-        inline constexpr static uint32_t data_mem_depth = 16;
-        inline constexpr static const char * data_mem_ini = "mem/data.ini";
-    };
-    // Default configs for LoongArch core
-    template<>
-    class MemoryConfigs<IsaType::LOONGARCH> {
-    public:
-        inline constexpr static uint32_t instr_mem_start = 0x1C000000;
-        inline constexpr static uint32_t instr_mem_depth = 16;
-        inline constexpr static const char * instr_mem_ini = "mem/instr.ini";
-        inline constexpr static uint32_t data_mem_start = 0x1C800000;
-        inline constexpr static uint32_t data_mem_depth = 16;
-        inline constexpr static const char * data_mem_ini = "mem/data.ini";
-    };
 
     // Difftest configs
     inline constexpr static DifftestLevel difftest_level = DifftestLevel::NONE;

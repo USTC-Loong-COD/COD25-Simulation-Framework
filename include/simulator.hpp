@@ -15,6 +15,7 @@
 #include "enums.hpp"
 #include "golden.hpp"
 #include <bitset>
+#include <format>
 #include <iostream>
 
 template<typename, DifftestLevel>
