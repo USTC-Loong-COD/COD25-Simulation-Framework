@@ -532,7 +532,7 @@ private:
 
     inline static std::vector<std::unique_ptr<BaseOperation<__Configs>>> decode(uint32_t _instr) {
         auto res = std::vector<std::unique_ptr<BaseOperation<__Configs>>>();
-        if(check<0xFFFFFFFF, 0x80000000>(_instr)) {
+        if(check<0xFFFFFFFF, 0x00100073>(_instr)) {
             // halt
             // halt = 1
 
