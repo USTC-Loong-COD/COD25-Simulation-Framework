@@ -59,6 +59,7 @@ private:
     uint32_t __instr_count;
 
     decltype(VTop::clk) & __clk;
+    decltype(VTop::rst) & __rst;
     decltype(VTop::commit_pc) & __pc;
     decltype(VTop::commit_instr) & __instr;
     decltype(VTop::commit) & __commit;
@@ -77,7 +78,7 @@ public:
     inline Dut()
         : __dut_ptr(std::make_shared<VTop>()), __trace_file_ptr(nullptr),
           __time(0), __instr_count(0),
-          __clk(__dut_ptr->clk), __pc(__dut_ptr->commit_pc), __instr(__dut_ptr->commit_instr), __commit(__dut_ptr->commit),
+          __clk(__dut_ptr->clk), __rst(__dut_ptr->rst), __pc(__dut_ptr->commit_pc), __instr(__dut_ptr->commit_instr), __commit(__dut_ptr->commit),
           __reg_we(__dut_ptr->commit_reg_we), __reg_wa(__dut_ptr->commit_reg_wa), __reg_wd(__dut_ptr->commit_reg_wd),
           __dmem_we(__dut_ptr->commit_dmem_we), __dmem_wa(__dut_ptr->commit_dmem_wa), __dmem_wd(__dut_ptr->commit_dmem_wd),
           __halt(__dut_ptr->commit_halt),
@@ -95,7 +96,7 @@ public:
 
         __clk = 0;
         __eval();
-        __dump();
+        __reset();
     }
 
     inline ~Dut() {
@@ -112,6 +113,12 @@ public:
     }
 
 private:
+    inline void __reset() {
+        __rst = 1;
+        __step_cycle()
+        __rst = 0;
+    }
+
     inline void __clock_turnover() {
         __clk = !__clk;
         __eval();
