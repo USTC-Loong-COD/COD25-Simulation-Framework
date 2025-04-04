@@ -115,7 +115,7 @@ public:
 private:
     inline void __reset() {
         __rst = 1;
-        __step_cycle()
+        __step_cycle();
         __rst = 0;
     }
 
