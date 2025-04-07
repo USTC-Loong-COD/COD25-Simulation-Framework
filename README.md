@@ -27,6 +27,8 @@
     $ cmake -B build && cmake --build build
     ```
 
+    **注意：每次修改 Verilog 源文件都需要重新编译！**
+
 5.  编译出的可执行文件在 build 目录下，使用如下命令运行：
 
     ``` shell
