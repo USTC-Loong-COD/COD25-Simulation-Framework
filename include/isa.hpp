@@ -840,6 +840,7 @@ private:
                 res.push_back(make_operation(assign, UnsignedDataMemGenerator<__Configs>(rs1, simm, 8), ConstUnsignedRegisterGenerator<__Configs>(rs2)));
                 res.push_back(make_operation(assign, MemWeGenerator<__Configs>(), UnsignedImmGenerator<__Configs>(1)));
                 res.push_back(make_operation(add, UnsignedTempGenerator<__Configs>(0), ConstUnsignedRegisterGenerator<__Configs>(rs1), UnsignedImmGenerator<__Configs>(simm)));
+                res.push_back(make_operation(subtract, UnsignedTempGenerator<__Configs>(0), ConstUnsignedTempGenerator<__Configs>(0), UnsignedImmGenerator<__Configs>(__Configs::data_mem_start)));
                 res.push_back(make_operation(shift_right, MemWaGenerator<__Configs>(), ConstUnsignedTempGenerator<__Configs>(0), UnsignedImmGenerator<__Configs>(2)));
                 res.push_back(make_operation(assign, MemWdGenerator<__Configs>(), ConstUnsignedDataMemGenerator<__Configs>(rs1, simm, 32)));
                 return res;
@@ -849,6 +850,7 @@ private:
                 res.push_back(make_operation(assign, UnsignedDataMemGenerator<__Configs>(rs1, simm, 16), ConstUnsignedRegisterGenerator<__Configs>(rs2)));
                 res.push_back(make_operation(assign, MemWeGenerator<__Configs>(), UnsignedImmGenerator<__Configs>(1)));
                 res.push_back(make_operation(add, UnsignedTempGenerator<__Configs>(0), ConstUnsignedRegisterGenerator<__Configs>(rs1), UnsignedImmGenerator<__Configs>(simm)));
+                res.push_back(make_operation(subtract, UnsignedTempGenerator<__Configs>(0), ConstUnsignedTempGenerator<__Configs>(0), UnsignedImmGenerator<__Configs>(__Configs::data_mem_start)));
                 res.push_back(make_operation(shift_right, MemWaGenerator<__Configs>(), ConstUnsignedTempGenerator<__Configs>(0), UnsignedImmGenerator<__Configs>(2)));
                 res.push_back(make_operation(assign, MemWdGenerator<__Configs>(), ConstUnsignedDataMemGenerator<__Configs>(rs1, simm, 32)));
                 return res;
@@ -858,6 +860,7 @@ private:
                 res.push_back(make_operation(assign, UnsignedDataMemGenerator<__Configs>(rs1, simm, 32), ConstUnsignedRegisterGenerator<__Configs>(rs2)));
                 res.push_back(make_operation(assign, MemWeGenerator<__Configs>(), UnsignedImmGenerator<__Configs>(1)));
                 res.push_back(make_operation(add, UnsignedTempGenerator<__Configs>(0), ConstUnsignedRegisterGenerator<__Configs>(rs1), UnsignedImmGenerator<__Configs>(simm)));
+                res.push_back(make_operation(subtract, UnsignedTempGenerator<__Configs>(0), ConstUnsignedTempGenerator<__Configs>(0), UnsignedImmGenerator<__Configs>(__Configs::data_mem_start)));
                 res.push_back(make_operation(shift_right, MemWaGenerator<__Configs>(), ConstUnsignedTempGenerator<__Configs>(0), UnsignedImmGenerator<__Configs>(2)));
                 res.push_back(make_operation(assign, MemWdGenerator<__Configs>(), ConstUnsignedDataMemGenerator<__Configs>(rs1, simm, 32)));
                 return res;
