@@ -5,9 +5,31 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_BUILD_TYPE Release)
 
+include(CheckCXXSourceCompiles)
+
+check_cxx_source_compiles("
+  #include <format>
+  int main() {
+    std::format(\"Hello {}\", \"world\");
+    return 0;
+  }
+" HAS_STD_FORMAT)
+
+if(HAS_STD_FORMAT)
+    message(STATUS "Compiler supports std::format")
+    add_compile_definitions(HAS_STD_FORMAT)
+else()
+    message(STATUS "Compiler does NOT support std::format, falling back to fmt")
+    find_package(fmt REQUIRED)
+endif()
+
 add_executable(sim app/main.cpp)
 
 include_directories(include)
+
+if(NOT HAS_STD_FORMAT)
+    target_link_libraries(sim PRIVATE fmt::fmt)
+endif()
 
 find_package(VERILATOR HINTS $ENV{VERILATOR_ROOT})
 file(GLOB_RECURSE VSRCS ${CMAKE_SOURCE_DIR}/vsrc/your_vsrc/*.v)

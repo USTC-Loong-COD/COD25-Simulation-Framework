@@ -15,8 +15,24 @@
 #include "enums.hpp"
 #include "golden.hpp"
 #include <bitset>
-#include <format>
 #include <iostream>
+
+#ifdef HAS_STD_FORMAT
+
+#include <format>
+
+#else
+
+#include <fmt/core.h>
+
+namespace std {
+
+// fake std::format
+using fmt::format;
+
+}
+
+#endif // USE_STD_FORMAT
 
 template<typename, DifftestLevel>
 class SimulatorImpl;
