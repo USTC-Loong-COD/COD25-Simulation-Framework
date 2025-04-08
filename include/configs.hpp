@@ -51,7 +51,7 @@ public:
     // Difftest configs
     inline constexpr static DifftestLevel difftest_level = DifftestLevel::NONE;
     inline constexpr static bool dump_waveform = false;
-    inline constexpr static char dump_path[] = "waveform/waveform.vcd";
+    inline constexpr static const char * dump_path = "waveform/waveform.vcd";
 
     // aliases
     inline constexpr static uint32_t instr_mem_start = MemoryConfigs<isa_type>::instr_mem_start;
