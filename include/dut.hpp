@@ -89,7 +89,8 @@ public:
             __dut_ptr->trace(__trace_file_ptr.get(), 99);
             if(auto path_string = std::string(__Configs::dump_path); path_string.find('/') != std::string::npos) {
                 std::string command = "mkdir -p " + path_string.substr(0, path_string.find_last_of('/'));
-                system(command.c_str());
+                // to make compiler happy
+                (void)system(command.c_str());
             }
             __trace_file_ptr->open(__Configs::dump_path);
         }
