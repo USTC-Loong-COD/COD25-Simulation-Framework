@@ -37,9 +37,15 @@ module
     wire [31 : 0] dmem_wdata;
     wire [ 0 : 0] dmem_we;
 
+    wire [31 : 0] imem_paddr;
+    wire [31 : 0] dmem_paddr;
     wire [31 : 0] commit_dmem_wa_raw;
+    wire [31 : 0] commit_dmem_pwa;
 
-    assign commit_dmem_wa = commit_dmem_wa_raw[`DATA_MEM_DEPTH + 1 : 2];
+    assign imem_paddr = pc - `INSTR_MEM_START;
+    assign dmem_paddr = dmem_addr - `DATA_MEM_START;
+    assign commit_dmem_pwa = commit_dmem_wa_raw - `DATA_MEM_START;
+    assign commit_dmem_wa = commit_dmem_pwa[`DATA_MEM_DEPTH + 1 : 2];
 
     CPU cpu(
         .clk                    (clk),
@@ -70,12 +76,12 @@ module
     );
 
     InstrMem instr_mem(
-        .a                      (pc[`INSTR_MEM_DEPTH + 1 : 2]),
+        .a                      (imem_paddr[`INSTR_MEM_DEPTH + 1 : 2]),
         .spo                    (instr)
     );
 
     DataMem data_mem(
-        .a                      (dmem_addr[`DATA_MEM_DEPTH + 1 : 2]),
+        .a                      (dmem_paddr[`DATA_MEM_DEPTH + 1 : 2]),
         .d                      (dmem_wdata),
         .clk                    (clk),
         .we                     (dmem_we),
