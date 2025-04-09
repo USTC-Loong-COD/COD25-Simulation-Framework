@@ -52,6 +52,8 @@
     $ cmake -B build && cmake --build build
     ```
 
+    如果编译出现与 `fmt` 库相关的报错，请使用 `sudo apt install libfmt-dev` 命令安装 `fmt` 库。
+
     **注意：每次修改 Verilog 源文件，或者修改配置项都需要重新编译！以及最新版的 verilator 可能有问题，如果发现修改了 Verilog 源文件后 `generated` 目录未更新，请删除该目录重新编译。**
 
 5.  编译出的可执行文件在 build 目录下，使用如下命令运行：
