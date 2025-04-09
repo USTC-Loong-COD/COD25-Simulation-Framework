@@ -1,7 +1,7 @@
 /**
  * @file configs.hpp
  * @author USTC 2025 Spring COD LJL TA Group
- * @version 2.0.0 Beta
+ * @version 2.1.0
  * @date 2025-03-09
  *
  * @copyright Copyright (c) 2025

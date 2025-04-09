@@ -1,7 +1,7 @@
 /**
  * @file argument_generator.hpp
  * @author USTC 2025 Spring COD LJL TA Group
- * @version 2.0.0 Beta
+ * @version 2.1.0
  * @date 2025-03-11
  *
  * @copyright Copyright (c) 2025
