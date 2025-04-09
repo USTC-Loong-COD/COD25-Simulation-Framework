@@ -64,7 +64,7 @@ public:
         }
 
         ifs = std::ifstream(__Configs::data_mem_ini);
-        if(!ifs.is_open()) throw std::runtime_error("Failed to open file: " + std::string(__Configs::instr_mem_ini));
+        if(!ifs.is_open()) throw std::runtime_error("Failed to open file: " + std::string(__Configs::data_mem_ini));
         for(uint32_t i = 0; i < (1 << __Configs::data_mem_depth) && !ifs.eof(); i++) {
             ifs >> std::hex >> __data_mem[i];
         }
